@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class WorkTraining extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function education()
+    {
+        return $this->belongsTo(Education::class);
+    }
 }

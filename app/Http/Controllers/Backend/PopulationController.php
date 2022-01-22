@@ -65,7 +65,7 @@ class PopulationController extends Controller
             ]);
             $image = $request->file('image')->store('assets/population', 'public');
         } else {
-            $image = 'default.png';
+            $image = 'assets/population/default.png';
         }
 
         $user = User::create([

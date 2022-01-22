@@ -1,3 +1,4 @@
 *
 !.gitignore
-!./assets/population/default.png
+!./population/default.png
+!./pelatihan-kerja/default.png

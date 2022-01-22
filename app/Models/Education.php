@@ -17,4 +17,9 @@ class Education extends Model
     {
         return $this->hasMany(Population::class);
     }
+
+    public function workTrainings()
+    {
+        return $this->hasMany(WorkTraining::class);
+    }
 }

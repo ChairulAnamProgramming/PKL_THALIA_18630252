@@ -12,7 +12,7 @@ class CreateWorkTrainingsTable extends Migration
      * @return void
      */
     public function up()
-    {
+    { //Pelatihan Kerja
         Schema::create('work_trainings', function (Blueprint $table) {
             $table->id();
             // Nama Pelatihan Kerja

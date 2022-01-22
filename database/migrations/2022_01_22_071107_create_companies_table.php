@@ -16,15 +16,14 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             // Jenis Perusahaan
             $table->string('type');
             $table->string('slug')->unique();
             $table->text('address');
             $table->longText('description');
             $table->string('phone');
-            $table->string('email');
             $table->text('website');
-            $table->text('contact');
             $table->text('image');
             $table->timestamps();
         });

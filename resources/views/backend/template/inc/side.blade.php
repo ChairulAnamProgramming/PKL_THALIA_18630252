@@ -35,6 +35,11 @@
                             Masyarakat
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('company.index') }}">
+                            Perusahaan
+                        </a>
+                    </li>
                 </ul>
             </div>
         </li>
@@ -45,7 +50,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="jav">
+            <a class="nav-link" href="{{ route('work_training.index') }}">
                 <i class="mdi mdi-worker menu-icon"></i>
                 <span class="menu-title">Pelatihan Kerja</span>
             </a>
@@ -54,12 +59,6 @@
             <a class="nav-link" href="jav">
                 <i class="mdi mdi-file-document-box menu-icon"></i>
                 <span class="menu-title">Lowongan Kerja</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="jav">
-                <i class="mdi mdi-file-document-box menu-icon"></i>
-                <span class="menu-title">Layanan AK1</span>
             </a>
         </li>
         <li class="nav-item">
