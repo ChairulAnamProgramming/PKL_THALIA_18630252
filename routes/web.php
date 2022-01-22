@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\EducationController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\JobVacancyController;
 use App\Http\Controllers\Backend\PopulationController;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\WorkTrainingController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('/company', CompanyController::class);
     Route::resource('/work_training', WorkTrainingController::class);
     Route::resource('/job_vacancy', JobVacancyController::class);
+    // REPORT
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 });

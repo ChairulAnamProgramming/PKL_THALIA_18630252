@@ -62,7 +62,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="jav">
+            <a class="nav-link" href="{{ route('reports.index') }}">
                 <i class="mdi mdi-database menu-icon"></i>
                 <span class="menu-title">Laporan</span>
             </a>
