@@ -3,6 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>DISNAKER TAPIN</title>
+    @stack('before-css')
     <!-- base:css -->
     <link rel="stylesheet" href="{{ url('templates/backend') }}/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="{{ url('templates/backend') }}/vendors/css/vendor.bundle.base.css">
@@ -16,10 +17,11 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
 
-
+    @stack('betweent-css')
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ url('templates/backend') }}/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ url('assets/images') }}/logo.png" />
+    @stack('after-css')
 
 </head>

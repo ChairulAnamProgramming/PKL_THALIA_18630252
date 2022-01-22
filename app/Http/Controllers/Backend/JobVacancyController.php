@@ -43,9 +43,10 @@ class JobVacancyController extends Controller
     {
         $request->validate([
             'company_id' => 'required|string|exists:companies,id',
-            'name' => 'required|string|unique:job_vacancies',
+            'name' => 'required|string',
             'quantity' => 'required|string|max:255',
             'position' => 'required|string|max:255',
+            'description' => 'required|string',
             'location' => 'required|string|max:255',
             'effective_date' => 'required|string|max:255',
         ]);
@@ -59,9 +60,11 @@ class JobVacancyController extends Controller
         $jobVacancy = JobVacancy::create([
             'company_id' => $request->company_id,
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'uuid' => Str::uuid(),
             'image' => $image,
             'quantity' => $request->quantity,
+            'description' => $request->description,
+            'salary' => $request->salary,
             'position' => $request->position,
             'location' => $request->location,
             'effective_date' => $request->effective_date,
@@ -80,9 +83,10 @@ class JobVacancyController extends Controller
      * @param  \App\Models\JobVacancy  $jobVacancy
      * @return \Illuminate\Http\Response
      */
-    public function show(JobVacancy $jobVacancy)
+    public function show($uuid)
     {
-        //
+        $data['jobVacancy'] = JobVacancy::where('uuid', $uuid)->first();
+        return view('backend.pages.job-vacancy.show', $data);
     }
 
     /**
@@ -110,14 +114,10 @@ class JobVacancyController extends Controller
             'name' => 'required|string',
             'quantity' => 'required|string|max:255',
             'position' => 'required|string|max:255',
+            'description' => 'required|string',
             'location' => 'required|string|max:255',
             'effective_date' => 'required|string|max:255',
         ]);
-        if ($request->name !== $jobVacancy->name) {
-            $request->validate([
-                'name' => 'required|string|unique:job_vacancies'
-            ]);
-        }
 
         if ($request->file('image')) {
             if ($jobVacancy->image !== 'default.png') {
@@ -131,9 +131,11 @@ class JobVacancyController extends Controller
         $jobVacancy->update([
             'company_id' => $request->company_id,
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'uuid' =>  Str::uuid(),
             'image' => $image,
             'quantity' => $request->quantity,
+            'description' => $request->description,
+            'salary' => $request->salary,
             'position' => $request->position,
             'location' => $request->location,
             'effective_date' => $request->effective_date,

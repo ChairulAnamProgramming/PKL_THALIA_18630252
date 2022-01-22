@@ -18,11 +18,13 @@ class CreateJobVacanciesTable extends Migration
             $table->id();
             $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('uuid')->unique();
             $table->text('image');
             $table->integer('quantity');
-            $table->longText('position');
+            $table->text('position');
             $table->string('location');
+            $table->longText('description');
+            $table->double('salary')->nullable();
             $table->timestamp('effective_date');
             $table->text('link')->nullable();
             $table->timestamps();

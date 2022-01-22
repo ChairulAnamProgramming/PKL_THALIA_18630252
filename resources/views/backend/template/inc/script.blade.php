@@ -1,3 +1,4 @@
+@stack('before-script')
 <!-- base:js -->
 <script src="{{ url('templates/backend') }}/vendors/js/vendor.bundle.base.js"></script>
 <!-- endinject -->
@@ -16,6 +17,7 @@
 <!-- plugin js for this page -->
 <!-- End plugin js for this page -->
 <!-- Custom js for this page-->
+@stack('betweent-script')
 <script src="{{ url('templates/backend') }}/js/dashboard.js"></script>
 <!-- End custom js for this page-->
 

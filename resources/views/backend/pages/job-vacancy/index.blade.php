@@ -1,9 +1,10 @@
 @extends('backend.template.index')
 
+
 @section('content')
 
     <div class="row">
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-5">
             <div class="card">
                 <div class="card-body">
                     <form id="form" action="{{ route('job_vacancy.store') }}" class="forms-sample" method="POST"
@@ -28,6 +29,22 @@
                         <div class="form-group">
                             <label for="image">Gambar</label>
                             <input type="file" class="form-control" value="{{ old('image') }}" id="image" name="image">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Deskripsi</label>
+                            <textarea class="form-control"" id=" description" name="description"
+                                placeholder="Posisi pekerjaan">{{ old('description') }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">Gajih</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                                </div>
+                                <input type="number" class="form-control" value="{{ old('salary') }}" id="salary"
+                                    name="salary" placeholder="Ketikan Gajih">
+                            </div>
+
                         </div>
                         <div class="form-group">
                             <label for="quantity">Jumlah Perekrutan</label>
@@ -63,7 +80,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-7">
             <div class="card">
                 <div class="card-body table-responsive">
                     <table class="table datatables">
@@ -108,6 +125,8 @@
                                             data-quantity="{{ $jobVacancy->quantity }}"
                                             data-position="{{ $jobVacancy->position }}"
                                             data-location="{{ $jobVacancy->location }}"
+                                            data-description="{{ $jobVacancy->description }}"
+                                            data-salary="{{ $jobVacancy->salary }}"
                                             data-effective_date="{{ $jobVacancy->effective_date }}"
                                             data-link="{{ $jobVacancy->link }}"
                                             data-url="{{ route('job_vacancy.update', $jobVacancy->id) }}">
@@ -142,6 +161,8 @@
             const company_id = $(this).data('company_id');
             const name = $(this).data('name');
             const quantity = $(this).data('quantity');
+            const description = $(this).data('description');
+            const salary = $(this).data('salary');
             const position = $(this).data('position');
             const location = $(this).data('location');
             const effective_date = $(this).data('effective_date');
@@ -152,10 +173,12 @@
             $('#company_id').val(company_id);
             $('#name').val(name);
             $('#quantity').val(quantity);
+            $('#description').val(description);
+            $('#salary').val(salary);
             $('#position').val(position);
             $('#location').val(location);
             $('#effective_date').val(effective_date);
             $('#link').val(link);
-        })
+        });
     </script>
 @endpush

@@ -67,5 +67,11 @@
                 <span class="menu-title">Laporan</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('biodata.index') }}">
+                <i class="mdi mdi-face-profile menu-icon"></i>
+                <span class="menu-title">Biodata</span>
+            </a>
+        </li>
     </ul>
 </nav>
