@@ -1,4 +1,5 @@
 *
 !.gitignore
-!./population/default.png
-!./pelatihan-kerja/default.png
+!assets/population/default.png
+!assets/pelatihan-kerja/default.png
+!assets/perusahaan/default.png
