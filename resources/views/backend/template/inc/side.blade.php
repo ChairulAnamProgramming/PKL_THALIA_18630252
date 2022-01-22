@@ -56,7 +56,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="jav">
+            <a class="nav-link" href="{{ route('job_vacancy.index') }}">
                 <i class="mdi mdi-file-document-box menu-icon"></i>
                 <span class="menu-title">Lowongan Kerja</span>
             </a>
