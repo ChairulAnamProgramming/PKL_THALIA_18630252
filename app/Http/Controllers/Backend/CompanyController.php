@@ -53,7 +53,7 @@ class CompanyController extends Controller
         if ($request->file('image')) {
             $image = $request->file('image')->store('assets/perusahaan', 'public');
         } else {
-            $image = 'assets/perusahaan/default.png';
+            $image = 'default.png';
         }
 
         $user = User::create([
@@ -128,7 +128,7 @@ class CompanyController extends Controller
         }
 
         if ($request->file('image')) {
-            if ($request->file('image') !== 'assets/perusahaan/default.png') {
+            if ($request->file('image') !== 'default.png') {
                 File::delete('storage/' . $company->image);
             }
             $image = $request->file('image')->store('assets/perusahaan', 'public');
@@ -140,7 +140,7 @@ class CompanyController extends Controller
             'name' => $request->name,
         ]);
         if ($user) {
-            $company = Company::create([
+            $company->update([
                 'name' => $request->name,
                 'type' => $request->type,
                 'slug' => Str::slug($request->name),
@@ -165,7 +165,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        if ($company->image !== 'assets/perusahaan/default.png') {
+        if ($company->image !== 'default.png') {
             File::delete('storage/' . $company->image);
         }
         $user = User::find($company->user_id);

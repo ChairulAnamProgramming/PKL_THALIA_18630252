@@ -97,7 +97,11 @@
                                     </td>
                                     <td class="d-flex">
                                         <button class="btn btn-outline-success btn-edit" data-name="{{ $company->name }}"
-                                            data-type="{{ $company->type }}"
+                                            data-type="{{ $company->type }}" data-address="{{ $company->address }}"
+                                            data-description="{{ $company->description }}"
+                                            data-phone="{{ $company->phone }}"
+                                            data-email="{{ $company->user->email }}"
+                                            data-website="{{ $company->website }}"
                                             data-url="{{ route('company.update', $company->id) }}">
                                             <i class="mdi mdi-lead-pencil"></i>
                                             Ubah
@@ -128,12 +132,22 @@
         $('.btn-edit').on('click', function() {
             const url = $(this).data('url');
             const name = $(this).data('name');
-            const major = $(this).data('major');
+            const type = $(this).data('type');
+            const address = $(this).data('address');
+            const description = $(this).data('description');
+            const phone = $(this).data('phone');
+            const email = $(this).data('email');
+            const website = $(this).data('website');
             const method = '<input type="hidden" name="_method" value="PATCH">';
             $('#form').attr('action', url);
             $('#method').html(method);
             $('#name').val(name);
-            $('#major').val(major);
+            $('#type').val(type);
+            $('#address').val(address);
+            $('#description').val(description);
+            $('#phone').val(phone);
+            $('#email').val(email);
+            $('#website').val(website);
         })
     </script>
 @endpush
