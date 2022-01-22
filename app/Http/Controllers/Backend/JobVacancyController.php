@@ -53,7 +53,7 @@ class JobVacancyController extends Controller
         if ($request->file('image')) {
             $image = $request->file('image')->store('assets/lowongan-kerja', 'public');
         } else {
-            $image = 'assets/lowongan-kerja/default.png';
+            $image = 'default.png';
         }
 
         $jobVacancy = JobVacancy::create([
@@ -120,7 +120,7 @@ class JobVacancyController extends Controller
         }
 
         if ($request->file('image')) {
-            if ($request->file('image') !== 'assets/lowongan-kerja/default.png') {
+            if ($jobVacancy->image !== 'default.png') {
                 File::delete('storage/' . $jobVacancy->image);
             }
             $image = $request->file('image')->store('assets/lowongan-kerja', 'public');
@@ -154,7 +154,7 @@ class JobVacancyController extends Controller
      */
     public function destroy(JobVacancy $jobVacancy)
     {
-        if ($jobVacancy->image !== 'assets/lowongan-kerja/default.png') {
+        if ($jobVacancy->image !== 'default.png') {
             File::delete('storage/' . $jobVacancy->image);
         }
 

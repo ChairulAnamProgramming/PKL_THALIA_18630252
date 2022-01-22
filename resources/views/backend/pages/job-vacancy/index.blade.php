@@ -92,7 +92,7 @@
                                     <td>
                                         <img src="{{ url('storage') . '/' . $jobVacancy->image }}" width="40" alt="">
                                     </td>
-                                    <td>{{ $jobVacancy->quantity }}</td>
+                                    <td>{{ $jobVacancy->quantity }} Orang</td>
                                     <td>{{ $jobVacancy->position }}</td>
                                     <td>{{ $jobVacancy->location }}</td>
                                     <td>{{ $jobVacancy->effective_date }}</td>
