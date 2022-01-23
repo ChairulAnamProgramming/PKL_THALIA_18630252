@@ -62,15 +62,21 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('reports.index') }}">
-                <i class="mdi mdi-database menu-icon"></i>
-                <span class="menu-title">Laporan</span>
+            <a class="nav-link" href="{{ route('job_application.index') }}">
+                <i class="mdi mdi mdi-worker menu-icon"></i>
+                <span class="menu-title">Lamaran Kerja</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('biodata.index') }}">
                 <i class="mdi mdi-face-profile menu-icon"></i>
                 <span class="menu-title">Biodata</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('reports.index') }}">
+                <i class="mdi mdi-database menu-icon"></i>
+                <span class="menu-title">Laporan</span>
             </a>
         </li>
     </ul>

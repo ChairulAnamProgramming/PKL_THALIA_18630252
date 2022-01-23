@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\JobApplication;
+use App\Models\JobVacancy;
 use App\Models\Population;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +20,29 @@ class JobApplicationController extends Controller
      */
     public function index()
     {
-        //
+        // dd(Auth::user()->rule);
+        switch (Auth::user()->rule) {
+            case 'admin':
+                $data['jobApplications'] = JobApplication::with('jobVacancy')->orderBy('id', 'DESC')->get();
+                break;
+            case 'company':
+                $company = Company::where('user_id', Auth::user()->id)->first();
+                $jobVacancies = JobVacancy::where('company_id', $company->id)->first();
+                $data['jobApplications'] = $jobVacancies->jobApplications;
+                break;
+            case 'user':
+                $population = Population::where('user_id', Auth::user()->id)->first();
+                if ($population) {
+                    $data['jobApplications'] = JobApplication::where('popuation_id', $population->id)->get();
+                } else {
+                    $data['jobApplications'] = null;
+                }
+                break;
+            default:
+                $data['jobApplications'] = JobApplication::orderBy('id', 'DESC')->get();
+                break;
+        }
+        return view('backend.pages.job-application.index', $data);
     }
 
     /**
@@ -64,9 +88,11 @@ class JobApplicationController extends Controller
      * @param  \App\Models\JobApplication  $jobApplication
      * @return \Illuminate\Http\Response
      */
-    public function show(JobApplication $jobApplication)
+    public function show($id)
     {
-        //
+        $id = Crypt::decrypt($id);
+        $data['jobApplication'] = JobApplication::find($id);
+        return view('backend.pages.job-application.show', $data);
     }
 
     /**
@@ -89,7 +115,18 @@ class JobApplicationController extends Controller
      */
     public function update(Request $request, JobApplication $jobApplication)
     {
-        //
+        try {
+            $status = Crypt::decrypt($request->status);
+            $jobApplication->update([
+                'status' => $status,
+            ]);
+            if ($jobApplication) {
+                return redirect()->back()->with('success', 'Pengajuan lamaran kerja berhasil di ' . $status . '.');
+            }
+            return redirect()->back()->with('danger', 'Pengajuan lamaran kerja gagal di ' . $status . '.');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('danger', 'Gagal memuat, coba kembali nanti.');
+        }
     }
 
     /**

@@ -31,6 +31,7 @@ setelah itu pergi ke foleder tempat anda ingin menyimpan source code aplikasi,bi
 - sesuaikan DB_DATABASE di file .env dengan database yang telah anda buat di phpmyadmin 
 - ketikkan : php artisan migrate
 - ketikkan : php artisan tinker
+- ketikkan : php artisan storage:link
 - ketikkan : User::factory()->create();
 - Done
 

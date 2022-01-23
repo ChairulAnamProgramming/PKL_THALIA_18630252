@@ -15,7 +15,7 @@ class JobApplication extends Model
         return $this->belongsTo(Population::class);
     }
 
-    public function jobVacancie()
+    public function jobVacancy()
     {
         return $this->belongsTo(JobVacancy::class);
     }

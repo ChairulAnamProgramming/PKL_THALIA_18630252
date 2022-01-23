@@ -91,7 +91,7 @@ class JobVacancyController extends Controller
         $data['jobVacancy'] = JobVacancy::where('uuid', $uuid)->first();
         $data['population'] = Population::find(Auth::user()->id);
         if ($data['population']) {
-            $data['job_application'] = JobApplication::where('job_vacancie_id', $data['jobVacancy']->id)
+            $data['job_application'] = JobApplication::where('job_vacancy_id', $data['jobVacancy']->id)
                 ->where('population_id', $data['population']->id)->first();
         }
         return view('backend.pages.job-vacancy.show', $data);

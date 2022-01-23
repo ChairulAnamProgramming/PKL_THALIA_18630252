@@ -15,7 +15,7 @@ class CreateJobApplicationsTable extends Migration
     { //Lamaran Kerja
         Schema::create('job_applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_vacancie_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('job_vacancy_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('population_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->enum('status', ['panding', 'received', 'rejected', 'stop']);
             $table->timestamp('date_received')->nullable();
