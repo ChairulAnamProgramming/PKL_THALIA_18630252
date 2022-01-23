@@ -1,86 +1,18 @@
 @extends('backend.template.index')
 
+@push('after-css')
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+@endpush
 
 @section('content')
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#modelId">
+        Tambah Data
+    </button>
 
     <div class="row">
-        <div class="col-12 col-md-5">
-            <div class="card">
-                <div class="card-body">
-                    <form id="form" action="{{ route('job_vacancy.store') }}" class="forms-sample" method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div id="method"></div>
-                        <div class="form-group">
-                            <label for="company_id">Perusahaan</label>
-                            <select class="form-control" value="{{ old('company_id') }}" id="company_id"
-                                name="company_id" placeholder="Nama Pendidikan">
-                                <option value="">Pilih</option>
-                                @foreach ($companies as $company)
-                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Label Lowongan</label>
-                            <input type="text" class="form-control" value="{{ old('name') }}" id="name" name="name"
-                                placeholder="Nama lowongan pekerjaan">
-                        </div>
-                        <div class="form-group">
-                            <label for="image">Gambar</label>
-                            <input type="file" class="form-control" value="{{ old('image') }}" id="image" name="image">
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Deskripsi</label>
-                            <textarea class="form-control"" id=" description" name="description"
-                                placeholder="Posisi pekerjaan">{{ old('description') }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="salary">Gajih</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                </div>
-                                <input type="number" class="form-control" value="{{ old('salary') }}" id="salary"
-                                    name="salary" placeholder="Ketikan Gajih">
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="quantity">Jumlah Perekrutan</label>
-                            <input type="number" class="form-control" value="{{ old('quantity') }}" id="quantity"
-                                name="quantity" placeholder="Jumlah perekrutan pencaker">
-                        </div>
-                        <div class="form-group">
-                            <label for="position">Posisi</label>
-                            <textarea type="text" class="form-control" id="position" name="position"
-                                placeholder="Posisi pekerjaan">{{ old('position') }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="location">Lokasi</label>
-                            <textarea type="text" class="form-control" id="location" name="location"
-                                placeholder="Lokasi pekerjaan">{{ old('location') }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="effective_date">Tanggal Berlaku</label>
-                            <input type="date" class="form-control"
-                                value="{{ old('effective_date') ? date('Y-m-d', strtotime(old('effective_date'))) : date('Y-m-d') }}"
-                                id="effective_date" name="effective_date" placeholder="Nama Jurusan">
-                        </div>
-                        <div class="form-group">
-                            <label for="link">Link (opsional)</label>
-                            <input type="text" class="form-control" value="{{ old('link') }}" id="link" name="link"
-                                placeholder="Tulis link disini">
-                        </div>
-                        <button type="submit" class="btn btn-primary mr-2">
-                            <i class="mdi mdi-content-save"></i>
-                            Simpan
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-7">
+        <div class="col-12 col-md-12">
             <div class="card">
                 <div class="card-body table-responsive">
                     <table class="table datatables">
@@ -91,6 +23,8 @@
                                 <th>Label</th>
                                 <th>Gambar</th>
                                 <th>Jumlah Perekrutan</th>
+                                <th>Deskripsi</th>
+                                <th>Gajih</th>
                                 <th>Posisi</th>
                                 <th>Lokasi</th>
                                 <th>Tanggal Berlaku</th>
@@ -110,6 +44,13 @@
                                         <img src="{{ url('storage') . '/' . $jobVacancy->image }}" width="40" alt="">
                                     </td>
                                     <td>{{ $jobVacancy->quantity }} Orang</td>
+                                    <td>
+                                        <a href="{{ route('job_vacancy.show', $jobVacancy->uuid) }}">
+                                            Lihat detail
+                                        </a>
+                                    </td>
+                                    <td>{{ $jobVacancy->salary ? 'Rp.' . number_format($jobVacancy->salary, 2, ',', '.') : 'Dirahasiakan' }}
+                                    </td>
                                     <td>{{ $jobVacancy->position }}</td>
                                     <td>{{ $jobVacancy->location }}</td>
                                     <td>{{ $jobVacancy->effective_date }}</td>
@@ -119,8 +60,8 @@
                                         </a>
                                     </td>
                                     <td class="d-flex">
-                                        <button class="btn btn-outline-success btn-edit"
-                                            data-company_id="{{ $jobVacancy->company_id }}"
+                                        <button class="btn btn-outline-success btn-edit" data-toggle="modal"
+                                            data-target="#modelId" data-company_id="{{ $jobVacancy->company_id }}"
                                             data-name="{{ $jobVacancy->name }}"
                                             data-quantity="{{ $jobVacancy->quantity }}"
                                             data-position="{{ $jobVacancy->position }}"
@@ -152,10 +93,21 @@
         </div>
     </div>
 
+    @include('backend.pages.job-vacancy.components.modal')
+
 @endsection
 
 @push('after-script')
+
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> --}}
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script>
+        $('#description').summernote({
+            placeholder: 'Tulis Kualifikasi, Persyaratan, Keterampilan di butuhkan',
+            height: 200
+        });
         $('.btn-edit').on('click', function() {
             const url = $(this).data('url');
             const company_id = $(this).data('company_id');

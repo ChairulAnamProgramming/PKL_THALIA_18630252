@@ -130,8 +130,8 @@
                       </div>
                       <div class="form-group">
                           <label for="image">Foto</label>
-                          <input type="file" class="form-control" id="image" name="image"">
-                    </div>
+                          <input type="file" class="form-control" id="image" name="image">
+                      </div>
                       <div class="             modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                           <button class="btn btn-primary">

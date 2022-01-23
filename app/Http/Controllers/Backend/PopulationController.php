@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use File;
+use Illuminate\Support\Facades\Auth;
 
 class PopulationController extends Controller
 {
@@ -48,7 +49,7 @@ class PopulationController extends Controller
             'name' => 'required|string|max:255',
             'district_id' => 'required|string|max:255|exists:districts,id',
             'education_id' => 'required|string|max:255|exists:education,id',
-            'email' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|max:255',
             'nik' => 'required|string|max:255|unique:populations',
             'phone' => 'required|string|max:255',
             'place_of_birth' => 'required|string|max:255',
@@ -68,12 +69,22 @@ class PopulationController extends Controller
             $image = 'assets/population/default.png';
         }
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->nik),
-            'rule' => 'user',
-        ]);
+        if ($request->statue_form) {
+            $user = User::find(Auth::user()->id);
+            $user->update([
+                'name' => $request->name,
+            ]);
+        } else {
+            $request->validate([
+                'email' => 'unique:users',
+            ]);
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->nik),
+                'rule' => 'user',
+            ]);
+        }
 
         if ($user) {
             $population = Population::create([
