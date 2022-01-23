@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\EducationalBackgroundController;
 use App\Http\Controllers\Backend\EducationController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\JobApplicationController;
+use App\Http\Controllers\Backend\JobSeekerController;
 use App\Http\Controllers\Backend\JobVacancyController;
 use App\Http\Controllers\Backend\PopulationController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -32,6 +33,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('/work_training', WorkTrainingController::class);
     Route::resource('/job_vacancy', JobVacancyController::class);
     Route::resource('/job_application', JobApplicationController::class);
+    Route::resource('/job_seeker', JobSeekerController::class);
 
     // REPORT
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');

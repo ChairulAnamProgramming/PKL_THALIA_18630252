@@ -18,7 +18,7 @@ class CreateJobApplicationsTable extends Migration
             $table->foreignId('job_vacancy_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('population_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->enum('status', ['panding', 'received', 'rejected', 'stop']);
-            $table->timestamp('date_received')->nullable();
+            $table->date('date_received')->nullable();
             $table->timestamp('stop_date')->nullable();
             $table->timestamps();
         });

@@ -25,7 +25,7 @@ class CreateJobVacanciesTable extends Migration
             $table->string('location');
             $table->longText('description');
             $table->double('salary')->nullable();
-            $table->timestamp('effective_date');
+            $table->date('effective_date');
             $table->text('link')->nullable();
             $table->timestamps();
         });

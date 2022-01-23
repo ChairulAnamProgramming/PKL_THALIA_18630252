@@ -19,7 +19,7 @@ class CreateJobSeekersTable extends Migration
             // Nomor Pendaftaran
             $table->timestamp('number');
             // Tanggal Berlaku
-            $table->timestamp('effective_date');
+            $table->date('effective_date');
             $table->timestamps();
         });
     }

@@ -24,7 +24,7 @@ class CreateWorkTrainingsTable extends Migration
             $table->string('phone');
             $table->foreignId('education_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             // Tanggal Berlaku
-            $table->timestamp('effective_date');
+            $table->date('effective_date');
             $table->text('image');
             $table->timestamps();
         });
