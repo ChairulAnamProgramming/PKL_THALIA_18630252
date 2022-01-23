@@ -30,9 +30,21 @@
                             </p>
                         </div>
                         <div class="col-6 text-right">
-                            <a href="javascrypt:;" class="btn btn-primary">
-                                Lamar Sekarang
-                            </a>
+                            @if ($population)
+                                @if ($job_application)
+                                    <button class="btn btn-success">
+                                        Lamaran telah di ajukan
+                                    </button>
+                                @else
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modelLoker">
+                                        Lamar Sekarang
+                                    </button>
+                                @endif
+                            @else
+                                <button class="btn btn-secondary">
+                                    Lengkapi biodata anda terlebih dahulu
+                                </button>
+                            @endif
                         </div>
                     </div>
                     <hr>
@@ -69,6 +81,28 @@
             <h6 class="text-secondary">Tentang Perusahaan</h6>
             <h5 class="mb-3">{{ $jobVacancy->company->name }}</h5>
             <div class="text-secondary">{!! Str::limit($jobVacancy->company->description, 100) !!}</div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modelLoker" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{ route('job_application.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="job_vacancie_id" value="{{ $jobVacancy->id }}">
+                    <div class="modal-body text-center">
+                        <h6>Apakah biodata anda sudah anda lengkapi?</h6>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button class="btn btn-primary">
+                            Sudah
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

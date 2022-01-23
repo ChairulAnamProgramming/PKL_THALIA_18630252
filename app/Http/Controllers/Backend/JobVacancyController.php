@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Models\JobApplication;
 use App\Models\JobVacancy;
+use App\Models\Population;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use File;
+use Illuminate\Support\Facades\Auth;
 
 class JobVacancyController extends Controller
 {
@@ -86,6 +89,11 @@ class JobVacancyController extends Controller
     public function show($uuid)
     {
         $data['jobVacancy'] = JobVacancy::where('uuid', $uuid)->first();
+        $data['population'] = Population::find(Auth::user()->id);
+        if ($data['population']) {
+            $data['job_application'] = JobApplication::where('job_vacancie_id', $data['jobVacancy']->id)
+                ->where('population_id', $data['population']->id)->first();
+        }
         return view('backend.pages.job-vacancy.show', $data);
     }
 
