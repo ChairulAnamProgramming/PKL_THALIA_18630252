@@ -42,6 +42,7 @@ class EducationalBackgroundController extends Controller
         $request->validate([
             'education_id' => 'required|string|exists:education,id',
             'year' => 'required|string',
+            'type' => 'required|string',
             'document' => 'required',
         ]);
 
@@ -52,6 +53,7 @@ class EducationalBackgroundController extends Controller
             $educationalBackground = EducationalBackground::create([
                 'population_id' => $population->id,
                 'education_id' => $request->education_id,
+                'type' => $request->type,
                 'year' => date('Y', strtotime($request->year)),
                 'document' => $document,
             ]);
@@ -96,12 +98,14 @@ class EducationalBackgroundController extends Controller
         $request->validate([
             'education_id' => 'required|string|exists:education,id',
             'year' => 'required|string',
+            'type' => 'required|string',
             'document' => 'required',
         ]);
         File::delete('storage/' . $educationalBackground->document);
         $document = $request->file('document')->store('assets/ijazah', 'public');
         $educationalBackground->update([
             'education_id' => $request->education_id,
+            'type' => $request->type,
             'year' => date('Y', strtotime($request->year)),
             'document' => $document,
         ]);

@@ -22,6 +22,7 @@
 <!-- End custom js for this page-->
 
 <script>
+    const token = $('meta[name="csrf-token"]').attr('content')
     $('.datatables').DataTable();
 </script>
 

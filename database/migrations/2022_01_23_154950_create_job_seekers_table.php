@@ -17,7 +17,7 @@ class CreateJobSeekersTable extends Migration
             $table->id();
             $table->foreignId('population_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             // Nomor Pendaftaran
-            $table->timestamp('number');
+            $table->string('number');
             // Tanggal Berlaku
             $table->date('effective_date');
             $table->timestamps();

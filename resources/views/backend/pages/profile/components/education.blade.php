@@ -26,8 +26,9 @@
                         @foreach ($educationBackgrounds as $educationBackground)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $educationBackground->education->name }}</td>
-                                <td>{{ $educationBackground->education->major }}</td>
+                                <td>{{ $educationBackground->type }}</td>
+                                <td>{{ $educationBackground->education->name }}|{{ $educationBackground->education->major }}
+                                </td>
                                 <td>{{ $educationBackground->year }}</td>
                                 <td>
                                     <a href="{{ url('storage') . '/' . $educationBackground->document }}"
@@ -77,7 +78,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="education_id">Pendidikan</label>
+                        <label for="type">Jenis Pendidikan Formal</label>
+                        <select class="form-control" id="type" name="type">
+                            <option value="">Pilih</option>
+                            <option value="SD/SEDERAJAT">SD/SEDERAJAT</option>
+                            <option value="SMTP/SEDERAJAT">SMTP/SEDERAJAT</option>
+                            <option value="SMTA/D.I/AKTA.I">SMTA/D.I/AKTA.I</option>
+                            <option value="SM/D.II/D.III">SM/D.II/D.III</option>
+                            <option value="S/PASCAS/S.1/AKTA IV/DIV">S/PASCAS/S.1/AKTA IV/DIV</option>
+                            <option value="DOKTOR II/AKTA V">DOKTOR II/AKTA V</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="education_id">Jurusan Pendidikan</label>
                         <select class="form-control" id="education_id" name="education_id">
                             <option value="">Pilih</option>
                             @foreach ($educations as $education)

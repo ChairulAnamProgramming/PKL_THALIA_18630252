@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('/curriculumVitae', CurriculumVitaeController::class);
     Route::resource('/yellow-card', YellowCardController::class);
     Route::resource('/educational-background', EducationalBackgroundController::class);
+    Route::post('/autoComplite', [PopulationController::class, 'autoComplite'])->name('population.autoComplite');
     // MENUS
     Route::resource('/district', DistrictController::class);
     Route::resource('/education', EducationController::class);

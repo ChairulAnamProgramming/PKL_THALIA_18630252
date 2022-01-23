@@ -10,7 +10,7 @@
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     {{-- Datatables --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">

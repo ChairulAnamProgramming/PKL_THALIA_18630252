@@ -211,4 +211,11 @@ class PopulationController extends Controller
         }
         return redirect()->back()->with('danger', 'Data masyarakat gagal di hapus.');
     }
+
+    public function autoComplite(Request $request)
+    {
+        $nik = $request->nik;
+        $population = Population::where('nik', $nik)->first();
+        return json_decode($population);
+    }
 }

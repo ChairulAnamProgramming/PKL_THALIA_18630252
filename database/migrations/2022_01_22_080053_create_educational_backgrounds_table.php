@@ -17,6 +17,7 @@ class CreateEducationalBackgroundsTable extends Migration
             $table->id();
             $table->foreignId('population_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('education_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('type')->nullable();
             $table->year('year');
             $table->text('document');
             $table->timestamps();

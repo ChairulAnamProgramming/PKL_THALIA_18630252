@@ -46,4 +46,9 @@ class Population extends Model
     {
         return $this->hasMany(JobApplication::class);
     }
+
+    public function jobSeeker()
+    {
+        return $this->hasOne(JobSeeker::class);
+    }
 }
