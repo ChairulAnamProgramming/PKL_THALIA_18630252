@@ -16,6 +16,10 @@ class CreateJobSeekersTable extends Migration
         Schema::create('job_seekers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('population_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            // Nomor Pendaftaran
+            $table->timestamp('number');
+            // Tanggal Berlaku
+            $table->timestamp('effective_date');
             $table->timestamps();
         });
     }
