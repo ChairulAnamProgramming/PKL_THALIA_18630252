@@ -14,9 +14,9 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    @if (session('success') || session('error'))
+                    @if (session('success') || session('danger'))
                         <div class="alert alert-{{ session('success') ? 'success' : 'warning' }}" role="alert">
-                            <strong>{{ session('success') ? session('success') : session('error') }}</strong>
+                            <strong>{{ session('success') ? session('success') : session('danger') }}</strong>
                         </div>
                     @endif
                     @if ($errors->any())

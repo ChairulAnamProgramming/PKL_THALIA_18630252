@@ -26,4 +26,19 @@ class Population extends Model
     {
         return $this->belongsTo(District::class);
     }
+
+    public function curriculumVitae()
+    {
+        return $this->hasOne(CurriculumVitae::class);
+    }
+
+    public function yellowCard()
+    {
+        return $this->hasOne(YellowCard::class);
+    }
+
+    public function educationalBackgrounds()
+    {
+        return $this->hasMany(EducationalBackground::class);
+    }
 }

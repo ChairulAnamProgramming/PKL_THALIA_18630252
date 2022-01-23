@@ -22,4 +22,9 @@ class Education extends Model
     {
         return $this->hasMany(WorkTraining::class);
     }
+
+    public function educationalBackgrounds()
+    {
+        return $this->hasMany(EducationalBackground::class);
+    }
 }
