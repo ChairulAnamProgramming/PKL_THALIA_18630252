@@ -49,12 +49,12 @@
                 <span class="menu-title">Pencari Kerja</span>
             </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('work_training.index') }}">
                 <i class="mdi mdi-worker menu-icon"></i>
                 <span class="menu-title">Pelatihan Kerja</span>
             </a>
-        </li>
+        </li> --}}
         <li class="nav-item">
             <a class="nav-link" href="{{ route('job_vacancy.index') }}">
                 <i class="mdi mdi-file-document-box menu-icon"></i>
