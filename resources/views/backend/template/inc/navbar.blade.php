@@ -10,7 +10,7 @@
             <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{ url('assets/images') }}/logo.png"
                     width="50" alt="logo" /></a>
         </div>
-        <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Selmat Datang ,
+        <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Selamat Datang ,
             {{ Auth::user()->name }}</h4>
         <ul class="navbar-nav navbar-nav-right">
             {{-- <li class="nav-item dropdown mr-1">
