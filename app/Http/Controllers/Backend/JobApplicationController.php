@@ -117,8 +117,14 @@ class JobApplicationController extends Controller
     {
         try {
             $status = Crypt::decrypt($request->status);
+            if ($status === 'received') {
+                $date = date('Y-m-d');
+            } else {
+                $date = null;
+            }
             $jobApplication->update([
                 'status' => $status,
+                'date_received' => $date
             ]);
             if ($jobApplication) {
                 return redirect()->back()->with('success', 'Pengajuan lamaran kerja berhasil di ' . $status . '.');
