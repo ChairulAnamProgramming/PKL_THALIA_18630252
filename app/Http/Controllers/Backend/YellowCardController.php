@@ -7,7 +7,7 @@ use App\Models\Population;
 use App\Models\YellowCard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use File;
+use Illuminate\Support\Facades\File;
 
 class YellowCardController extends Controller
 {
@@ -43,7 +43,7 @@ class YellowCardController extends Controller
             'file' => 'required',
         ]);
         $file = $request->file('file')->store('assets/kartu-kuning', 'public');
-        $population = Population::find(Auth::user()->id);
+        $population = Population::find(Auth::user()->population->id);
         if ($population) {
             $curriculumVitae = YellowCard::create([
                 'file' => $file,

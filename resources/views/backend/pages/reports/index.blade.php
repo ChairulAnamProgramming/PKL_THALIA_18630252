@@ -29,8 +29,8 @@
                             Laporan Rekap Data Lowongan Kerja
                         </a>
                         <a href="javascrypt:;" class="list-group-item list-group-item-action" data-toggle="modal"
-                            data-target="#modelIdDataLowonganKerjaDiTerima">
-                            Laporan Rekap Data Lowongan Kerja Yang di Terima
+                            data-target="#modelIdDataLamaranKerjaDiTerima">
+                            Laporan Rekap Data lamaran Kerja Yang telah di Terima
                         </a>
                         {{-- <a href="javascrypt:;" class="list-group-item list-group-item-action disabled">
                             Laporan Data Pencari Kerja

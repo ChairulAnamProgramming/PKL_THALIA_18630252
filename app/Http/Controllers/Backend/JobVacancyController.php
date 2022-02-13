@@ -9,8 +9,8 @@ use App\Models\JobVacancy;
 use App\Models\Population;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use File;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class JobVacancyController extends Controller
 {
@@ -21,7 +21,11 @@ class JobVacancyController extends Controller
      */
     public function index()
     {
-        $data['jobVacancies'] = JobVacancy::orderBy('id', 'DESC')->get();
+        if (Auth::user()->rule === 'company') {
+            $data['jobVacancies'] = JobVacancy::where('company_id', Auth::user()->company->id)->orderBy('id', 'DESC')->get();
+        } else {
+            $data['jobVacancies'] = JobVacancy::orderBy('id', 'DESC')->get();
+        }
         $data['companies'] = Company::orderBy('name', 'ASC')->get();
         return view('backend.pages.job-vacancy.index', $data);
     }
@@ -89,7 +93,7 @@ class JobVacancyController extends Controller
     public function show($uuid)
     {
         $data['jobVacancy'] = JobVacancy::where('uuid', $uuid)->first();
-        $data['population'] = Population::find(Auth::user()->id);
+        $data['population'] = Population::find(Auth::user()->population->id);
         if ($data['population']) {
             $data['job_application'] = JobApplication::where('job_vacancy_id', $data['jobVacancy']->id)
                 ->where('population_id', $data['population']->id)->first();

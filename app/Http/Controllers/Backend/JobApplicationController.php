@@ -67,9 +67,9 @@ class JobApplicationController extends Controller
             $request->validate([
                 'job_vacancie_id' => 'required|exists:job_vacancies,id',
             ]);
-            $population = Population::find(Auth::user()->id);
+            $population = Population::find(Auth::user()->population->id);
             $jobApplication = JobApplication::create([
-                'job_vacancie_id' => $request->job_vacancie_id,
+                'job_vacancy_id' => $request->job_vacancie_id,
                 'population_id' => $population->id,
                 'status' => 'panding',
             ]);

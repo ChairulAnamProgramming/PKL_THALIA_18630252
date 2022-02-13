@@ -7,7 +7,7 @@ use App\Models\CurriculumVitae;
 use App\Models\Population;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use File;
+use Illuminate\Support\Facades\File;
 
 class CurriculumVitaeController extends Controller
 {
@@ -43,7 +43,7 @@ class CurriculumVitaeController extends Controller
             'file' => 'required',
         ]);
         $file = $request->file('file')->store('assets/cv', 'public');
-        $population = Population::find(Auth::user()->id);
+        $population = Population::find(Auth::user()->population->id);
         if ($population) {
             $curriculumVitae = CurriculumVitae::create([
                 'document' => $file,

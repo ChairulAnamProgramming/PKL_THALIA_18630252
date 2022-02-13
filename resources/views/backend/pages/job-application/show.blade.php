@@ -7,7 +7,7 @@
         <div class="col-12 col-md-8">
             <div class="card shadow border-0 rounded">
                 <div class="card-header d-flex justify-content-end bg-white">
-                    @if ($jobApplication === 'panding')
+                    @if ($jobApplication->status === 'panding')
                         @if (Auth::user()->rule === 'company')
                             <form action="{{ route('job_application.update', $jobApplication->id) }}" method="POST">
                                 @csrf

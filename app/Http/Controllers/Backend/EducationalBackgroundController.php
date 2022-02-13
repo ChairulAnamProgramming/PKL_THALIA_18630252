@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\EducationalBackground;
 use App\Models\Population;
 use Illuminate\Http\Request;
-use File;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class EducationalBackgroundController extends Controller
 {
@@ -46,7 +46,7 @@ class EducationalBackgroundController extends Controller
             'document' => 'required',
         ]);
 
-        $population = Population::find(Auth::user()->id);
+        $population = Population::find(Auth::user()->population->id);
 
         if ($population) {
             $document = $request->file('document')->store('assets/ijazah', 'public');
