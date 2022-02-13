@@ -38,5 +38,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     // REPORT
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-    Route::patch('/reports/{type}/job_seeker', [ReportController::class, 'education'])->name('reports.education');
+    Route::patch('/reports/{type}/job_seeker', [ReportController::class, 'jobseeker'])->name('reports.jobseeker');
+    Route::patch('/reports/{type}/jobvacancy', [ReportController::class, 'jobvacancy'])->name('reports.jobvacancy');
 });
