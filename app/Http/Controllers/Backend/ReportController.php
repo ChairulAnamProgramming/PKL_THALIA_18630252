@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\District;
 use App\Models\Education;
+use App\Models\JobApplication;
 use App\Models\JobSeeker;
 use App\Models\JobVacancy;
 use Illuminate\Http\Request;
@@ -101,6 +102,9 @@ class ReportController extends Controller
             case 'jobvacancy':
                 return $this->_jobvacancy($request);
                 break;
+            case 'accept':
+                return $this->_jobvacancyaccept($request);
+                break;
 
             default:
                 return redirect()->back()->with('danger', 'Request tidak falid');
@@ -118,5 +122,16 @@ class ReportController extends Controller
         $data['title'] = 'Laporan rekap data lowongan pekerjaan';
         $data['items'] = JobVacancy::whereBetween('created_at', [$first, $last])->get();
         return view('backend.pages.reports.pages.job-vacancy', $data);
+    }
+    private function _jobvacancyaccept($request)
+    {
+        $first = $request->date_first;
+        $last = $request->date_last;
+        $data['date_first'] = $request->date_first;
+        $data['date_last'] = $request->date_last;
+
+        $data['title'] = 'Laporan rekap data lowongan pekerjaan yang telah di terima perusahaan';
+        $data['items'] = JobApplication::where('status', 'received')->whereBetween('created_at', [$first, $last])->get();
+        return view('backend.pages.reports.pages.job-vacancy-accept', $data);
     }
 }

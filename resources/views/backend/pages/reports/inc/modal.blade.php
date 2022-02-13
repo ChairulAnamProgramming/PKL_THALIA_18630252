@@ -168,7 +168,7 @@
     aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="{{ route('reports.jobvacancy', Crypt::encrypt('jobvacancy')) }}" method="POST">
+            <form action="{{ route('reports.jobvacancy', Crypt::encrypt('accept')) }}" method="POST">
                 @csrf
                 @method('patch')
                 <div class="modal-header">
