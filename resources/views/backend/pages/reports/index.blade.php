@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="card">
+    <div class="card border-0 shadow rounded-lg">
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-md-4">
@@ -37,6 +37,15 @@
                         </a> --}}
                     </div>
                 </div>
+                {{-- <div class="col-12 col-md-4">
+                    <h4>Grafik Laporan/Report</h4>
+                    <div class="list-group">
+                        <a href="javascrypt:;" class="list-group-item list-group-item-action" data-toggle="modal"
+                            data-target="#modelIdDataPendidikan">
+                            Grafik Data Pencaker Berdasarkan Pendidikan
+                        </a>
+                    </div>
+                </div> --}}
             </div>
         </div>
     </div>
