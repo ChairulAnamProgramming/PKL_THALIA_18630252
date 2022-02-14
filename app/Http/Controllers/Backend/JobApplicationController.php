@@ -31,9 +31,9 @@ class JobApplicationController extends Controller
                 $data['jobApplications'] = $jobVacancies->jobApplications;
                 break;
             case 'user':
-                $population = Population::where('user_id', Auth::user()->population->id)->first();
+                $population = Population::where('user_id', Auth::user()->id)->first();
                 if ($population) {
-                    $data['jobApplications'] = JobApplication::where('popuation_id', $population->id)->get();
+                    $data['jobApplications'] = JobApplication::where('population_id', $population->id)->get();
                 } else {
                     $data['jobApplications'] = null;
                 }
