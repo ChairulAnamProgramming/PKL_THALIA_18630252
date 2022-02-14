@@ -25,7 +25,8 @@
                         <select type="date" name="education_id" id="education_id" class="form-control">
                             <option value="">---</option>
                             @foreach ($educations as $education)
-                                <option value="{{ $education->id }}">{{ $education->name }} </option>
+                                <option value="{{ $education->id }}">{{ $education->name }} |
+                                    {{ $education->major }}</option>
                             @endforeach
                         </select>
                     </div>
