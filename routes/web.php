@@ -14,10 +14,11 @@ use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\WorkTrainingController;
 use App\Http\Controllers\Backend\YellowCardController;
+use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', [FrontendHomeController::class, 'index']);
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::get('/', [HomeController::class, 'index']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/vacancy/{uuid}', [JobVacancyController::class, 'show'])->name('vacancy.detail');
     // BIODATA
