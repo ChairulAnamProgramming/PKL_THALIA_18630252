@@ -45,18 +45,26 @@
         </div>
     </section>
 
-    {{-- <section id="perusahaan" class="container mt-5">
+    <section id="perusahaan" class="container mt-5">
         <h4 class="text-center mb-4">Perusahaan</h4>
         <div class="row">
             @foreach ($companies as $company)
                 <div class="col-12 col-md-4">
                     <div class="card">
                         <div class="card-body">
-
+                            <img src="{{ url('storage') . '/' . $company->image }}" width="60"
+                                class="img-fluid border rounded" alt="{{ $company->name }}">
+                            <a href="{{ $company->website }}"
+                                class="my-2 text-secondary d-block">{{ $company->website }}</a>
+                            <h4>{{ $company->name }}</h4>
+                            <p class="text-secondary">
+                                <i class="mdi mdi-map-marker"></i>
+                                {{ Str::limit($company->address, 40) }}
+                            </p>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-    </section> --}}
+    </section>
 @endsection
